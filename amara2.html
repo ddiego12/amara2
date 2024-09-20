@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árbol de Decisiones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .hidden {
+            display: none;
+        }
+        .option-button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .option-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function showOptions(choice) {
+            // Ocultar el contenedor inicial
+            document.getElementById('initial-options').classList.add('hidden');
+            
+            // Ocultar todas las opciones secundarias
+            document.getElementById('choice1-options').classList.add('hidden');
+            document.getElementById('choice2-options').classList.add('hidden');
+            
+            // Mostrar las opciones relacionadas con la elección
+            if (choice === 'choice1') {
+                document.getElementById('choice1-options').classList.remove('hidden');
+            } else if (choice === 'choice2') {
+                document.getElementById('choice2-options').classList.remove('hidden');
+            }
+        }
+
+        function showNextStep(choice) {
+            // Ocultar todas las opciones secundarias
+            document.getElementById('choice1-options').classList.add('hidden');
+            document.getElementById('choice2-options').classList.add('hidden');
+
+            // Mostrar el resultado
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = '';
+
+            if (choice === 'option1-1') {
+                resultElement.innerHTML = 'Has elegido la opción 1.1';
+            } else if (choice === 'option1-2') {
+                resultElement.innerHTML = 'Has elegido la opción 1.2';
+            } else if (choice === 'option2-1') {
+                resultElement.innerHTML = 'Has elegido la opción 2.1';
+            } else if (choice === 'option2-2') {
+                resultElement.innerHTML = 'Has elegido la opción 2.2';
+            }
+            resultElement.classList.remove('hidden');
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Árbol de Decisiones</h1>
+
+        <!-- Opciones iniciales -->
+        <div id="initial-options">
+            <h2>Elige una opción inicial:</h2>
+            <button class="option-button" onclick="showOptions('choice1')">Opción 1</button>
+            <button class="option-button" onclick="showOptions('choice2')">Opción 2</button>
+        </div>
+
+        <!-- Opciones para la elección 1 -->
+        <div id="choice1-options" class="hidden">
+            <h3>Has elegido la Opción 1. Ahora elige entre:</h3>
+            <button class="option-button" onclick="showNextStep('option1-1')">Opción 1.1</button>
+            <button class="option-button" onclick="showNextStep('option1-2')">Opción 1.2</button>
+        </div>
+
+        <!-- Opciones para la elección 2 -->
+        <div id="choice2-options" class="hidden">
+            <h3>Has elegido la Opción 2. Ahora elige entre:</h3>
+            <button class="option-button" onclick="showNextStep('option2-1')">Opción 2.1</button>
+            <button class="option-button" onclick="showNextStep('option2-2')">Opción 2.2</button>
+        </div>
+
+        <!-- Resultado final -->
+        <div id="result" class="hidden"></div>
+    </div>
+
+</body>
+</html>
